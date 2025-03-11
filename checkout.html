@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Cycloid</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/cycloid-logo.png" alt="Cycloid Logo">
+                <div class="logo-text">
+                    <span class="shiny">Cycloid</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" onclick="openOffersModal()">Offers</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+                <button class="btn-cart" onclick="openCartModal()">View Cart</button>
+                <button class="btn-track" onclick="window.location.href='track-order.html'">Track Orders</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout">
+        <div class="container">
+            <h2>Checkout</h2>
+            <div id="checkoutItems"></div>
+            <p id="checkoutTotal"></p>
+            <div class="coupon-section">
+                <input type="text" id="couponCode" placeholder="Enter Coupon Code">
+                <button onclick="applyCoupon()">Apply Coupon</button>
+            </div>
+            <form id="checkoutForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="text" id="address" placeholder="Delivery Address" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <button type="submit" class="btn-checkout">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
