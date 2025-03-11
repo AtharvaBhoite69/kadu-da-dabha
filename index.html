@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycloid - Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/cycloid-logo.png" alt="Cycloid Logo">
+                <div class="logo-animation"></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" onclick="openOffersModal()">Offers</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+                <button class="btn-cart" onclick="openCartModal()">View Cart</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Hungry? Order Now!</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for restaurants or cuisines...">
+                <button onclick="searchRestaurants()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters and Sorting -->
+    <section class="filters">
+        <div class="container">
+            <select id="cuisineFilter">
+                <option value="">All Cuisines</option>
+                <option value="Italian">Italian</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Indian">Indian</option>
+                <option value="American">American</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Mediterranean">Mediterranean</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Barbecue">Barbecue</option>
+                <option value="Cafe">Cafe</option>
+            </select>
+            <select id="ratingFilter">
+                <option value="">All Ratings</option>
+                <option value="4.5">4.5+</option>
+                <option value="4.0">4.0+</option>
+                <option value="3.5">3.5+</option>
+            </select>
+            <select id="deliveryTimeFilter">
+                <option value="">All Delivery Times</option>
+                <option value="30">30 mins or less</option>
+                <option value="45">45 mins or less</option>
+                <option value="60">60 mins or less</option>
+            </select>
+            <select id="sortBy">
+                <option value="">Sort By</option>
+                <option value="rating">Rating</option>
+                <option value="deliveryTime">Delivery Time</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Restaurant Listings -->
+    <section class="restaurant-listings">
+        <div class="container">
+            <h2>Top Restaurants Near You</h2>
+            <div class="restaurant-grid" id="restaurantGrid">
+                <!-- Restaurant cards will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2023 Cycloid. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Menu Modal -->
+    <div id="menuModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMenuModal()">&times;</span>
+            <h2 id="menuTitle"></h2>
+            <div id="menuItems"></div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <p id="cartTotal"></p>
+            <button class="btn-checkout" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Offers Modal -->
+    <div id="offersModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOffersModal()">&times;</span>
+            <h2>Offers</h2>
+            <div id="offersList">
+                <div class="offer-item">
+                    <h3>50% Off on First Order</h3>
+                    <p>Use code <strong>CYCLOID50</strong> to get 50% off on your first order.</p>
+                </div>
+                <div class="offer-item">
+                    <h3>Free Delivery</h3>
+                    <p>Get free delivery on orders above ₹300.</p>
+                </div>
+                <div class="offer-item">
+                    <h3>Combo Offer</h3>
+                    <p>Buy 1 large pizza and get 1 garlic bread free.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
